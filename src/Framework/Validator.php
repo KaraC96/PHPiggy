@@ -16,7 +16,7 @@ class Validator
         $this->rules[$alias] = $rule;
     }
 
-    public function validate(array $fromData, array $fields)
+    public function validate(array $formData, array $fields)
     {
         $errors = [];
 
@@ -31,12 +31,12 @@ class Validator
 
                 $ruleValidator = $this->rules[$rule];
 
-                if ($ruleValidator->validate($fromData, $fieldName, $ruleParams)) {
+                if ($ruleValidator->validate($formData, $fieldName, $ruleParams)) {
                     continue;
                 }
 
                 $errors[$fieldName][] = $ruleValidator->getMessage(
-                    $fromData,
+                    $formData,
                     $fieldName,
                     $ruleParams
                 );
